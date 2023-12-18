@@ -1,0 +1,7 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 17,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "prettier.bracketSameLine": true
+}

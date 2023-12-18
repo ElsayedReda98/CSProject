@@ -34,7 +34,8 @@ window.addEventListener("load", function () {
   }); //end of confirm button
 }); // end of load
 
-let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+let currentUser = JSON.parse(localStorage.getItem(`currentUser`));
+let cartItems = JSON.parse(localStorage.getItem(`cart${currentUser}`));
 if (cartItems == null) {
   cartItems = [];
 }
@@ -83,7 +84,7 @@ function deleteItem(itemId) {
   } else {
     console.log("No items in local storage.");
   }
-  localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+  localStorage.setItem("", JSON.stringify(updatedItems));
   location.reload();
 }
 

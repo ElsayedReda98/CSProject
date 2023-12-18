@@ -159,6 +159,8 @@ let userName = userNameElement;
 let userEmail = emailElement;
 let mobile = mobileElement;
 let userPass = passwordElement;
+
+let cartUser =[];
 function registerEmail() {
   let user = {
     UserName: userName.value,
@@ -167,6 +169,8 @@ function registerEmail() {
     Pass: userPass.value,
   };
   allUsers.push(user);
+cartUser.push(user);
+  localStorage.setItem(`cart${user.userName}`, JSON.stringify(cartUser));
   localStorage.setItem("allUsers", JSON.stringify(allUsers));
   localStorage.setItem("userRegistered", JSON.stringify(user));
 }

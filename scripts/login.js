@@ -2,7 +2,6 @@ let userType = localStorage.getItem("userType");
 if (userType == null) {
   userType = "";
 }
-
 let emailElement = document.getElementById("email");
 let emailError = document.getElementById("emailError");
 emailElement.addEventListener("blur", function () {
@@ -46,10 +45,9 @@ passwordElement.addEventListener("blur", function () {
     passError.innerText = "";
   }
 }); // end of password blur
-let emailValue = emailElement.value;
 var user = {
-  "Email": `${emailValue}`,
-  "Pass": passwordElement.value,
+  Email: `${emailElement.value}`,
+  Pass: passwordElement.value,
 };
 let firstFormElement = this.document.forms[0];
 firstFormElement.addEventListener("submit", function (event) {
@@ -57,6 +55,25 @@ firstFormElement.addEventListener("submit", function (event) {
     event.preventDefault();
     passError.innerText = "Email or password is not correct";
   }
+  if (emailElement.value == "elsayedreda760@gmail.com" &&
+      passwordElement.value == "10203040"
+    ){
+     location.replace("../pages/dashboard.html") 
+    }
+    else if(!(emailElement.value == "elsayedreda760@gmail.com" &&
+    passwordElement.value == "10203040")){
+  for(let i=0;i<allUsers.length;i++){
+  if(allUsers[i].Email === emailElement.value && allUsers[i].passwordElement.value){
+    
+    localStorage.setItem("currentUser", allUsers[i].userName);
+    location.replace("../pages/gallery.html")
+  }
+}
+    }
+else
+{
+  alert("not valid")
+}
   if (isuserRegistered()) {
     if (isAdmin) {
       userType = "Admin";
@@ -105,20 +122,23 @@ function isuserRegistered() {
     }
   }
 }
-
-function isAdmin() {
-  let isAdmin = false;
-  if (
-    emailElement.value == "elsayedreda760@gmail.com" &&
-    passwordElement.value == "10203040"
-  ) {
-    // userType = "Admin";
-    // localStorage.setItem("userType", userType);
-    isAdmin = true;
-    return isAdmin;
-  } else {
-    // userType = "Member";
-    // localStorage.setItem("userType", userType);
-    return isAdmin;
-  }
+let admin = {
+  Name : "sayed",
+  Password : "123"
 }
+
+
+
+// function isAdmin() {
+//   let isAdmin = false;
+//    {
+//     // userType = "Admin";
+//     // localStorage.setItem("userType", userType);
+//     isAdmin = true;
+//     return isAdmin;
+//   } else {
+//     // userType = "Member";
+//     // localStorage.setItem("userType", userType);
+//     return isAdmin;
+//   }
+// }

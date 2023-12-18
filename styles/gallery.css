@@ -3,6 +3,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+#page-container{
+  /* height: 800px; */
+}
 .product {
   display: inline-block;
   font-size: 30px;
@@ -26,6 +29,5 @@ img {
 }
 div span {
   display: inline-block;
-  /* width: ; */
   margin: 10px;
 }

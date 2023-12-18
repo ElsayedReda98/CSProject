@@ -1,5 +1,8 @@
 let allProducts;
 let listTable = document.getElementById("listTable");
+let addForm = document.getElementById("add-product-form");
+let fileInput = document.getElementById('imageInput');
+// let id = 1;
 window.addEventListener("load", function () {
   // initial display
   displayProducts();
@@ -17,7 +20,8 @@ window.addEventListener("load", function () {
       }
     }
   });
-  this.document.forms[0].addEventListener("submit", function () {
+ 
+  addForm.addEventListener("submit", function (event) {
     addProduct();
   });
 }); // end of load
@@ -60,34 +64,51 @@ function displayProducts() {
     productList.appendChild(row);
   });
 }
+let productID = document.getElementById("productID");
+let productName = document.getElementById("productName");
+let productPrice = document.getElementById("productPrice");
+let productImage = document.getElementById("imageInput");
+let productDescription = document.getElementById("productDescription");
 
 function addProduct() {
-  // if (currentUser && (currentUser === "Admin" || currentUser === "Member")) {
+  //  if ((userType === "Admin" )){
   // }
-  let productID = document.getElementById("productID");
-  let productName = document.getElementById("productName");
-  let productPrice = document.getElementById("productPrice");
-  let productImage = document.getElementById("productImageUrl");
-  let productDescription = document.getElementById("productDescription");
-
   let newProduct = {
+    id: productID.value > 0 ? productID.value : 1 ,
     id: productID.value,
     name: productName.value,
     price: `${productPrice.value}`,
-    imageUrl: productImage.value,
+    imageUrl: `../images/${productImage.value.slice(12)}`,
     description: productDescription.value,
   };
+  newProduct.imageUrl.slice(12);
   allProducts.push(newProduct);
   localStorage.setItem("allProducts", JSON.stringify(allProducts));
   displayProducts();
   clearForm();
 }
+
+function loadPhoto(event) {
+  const fileInput = event.target;
+  const preview = document.getElementById('imageInput');
+
+  const reader = new FileReader();
+  if (fileInput.files && fileInput.files[0]) {
+
+      reader.onload = function (e) {
+          preview.src = e.target.result;
+      };
+
+      // Read the selected file as a data URL
+      reader.readAsDataURL(fileInput.files[0]);
+  }
+}
+
 function deleteProduct(productId) {
   let updatedProducts = [];
   if (allProducts) {
     updatedProducts = allProducts.filter((product) => product.id !== productId);
     console.log("Item deleted successfully.");
-    // location.reload();
   } else {
     console.log("No items in local storage.");
   }

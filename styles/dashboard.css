@@ -5,21 +5,28 @@
 }
 #product-form {
   max-width: 600px;
-  margin: 20px;
   padding: 10px;
+  margin: 20px auto;
   background-color: #fff;
-  border-radius: 8px;
+ 
+}
+#add{
+  padding: 5px;
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
 }
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 10px;
+  border-radius: 20px;
 }
 th,
 td {
   border: 1px solid #ddd;
   padding: 10px;
-  text-align: left;
 }
 th {
   background-color: #333;
