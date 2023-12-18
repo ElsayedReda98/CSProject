@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.product {
+  display: inline-block;
+  font-size: 30px;
+  width: 32%;
+  padding: 10px;
+  margin: 10px;
+  vertical-align: top;
+  background-color: rgb(157, 188, 217);
+  border-radius: 30px;
+  height: 480px;
+}
+#gallery a {
+  color: darkblue;
+  display: inline-block;
+  margin: 10px auto;
+  width: 300px;
+}
+img {
+  display: block;
+  margin: 10px auto;
+}
+div span {
+  display: inline-block;
+  /* width: ; */
+  margin: 10px;
+}

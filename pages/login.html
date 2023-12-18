@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" href=".././styles/header-footer.css" />
+  <link rel="stylesheet" href=".././styles/register.css" />
+</head>
+
+<body>
+  <div id="header-container"></div>
+  <div id="page-container">
+    <form id="login">
+      <table>
+        <tr>
+          <th>Sign In</th>
+        </tr>
+        <tr>
+          <td>E-Mail:</td>
+          <td>
+            <input type="email" id="email" />
+            <p id="emailError"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td>
+            <input type="password" id="password" />
+            <p id="passError"></p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="LogIn" />
+          </td>
+        </tr>
+        <td colspan="2">
+          <input type="reset" value="Cancel" />
+        </td>
+        <tr>
+          <td colspan="2">
+            <p class="option2">or</p>
+            <p class="option2">
+              Not a member? <a href="register.html">Sign Up now!</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div id="footer-container"></div>
+  <!--  script -->
+  <script src="../scripts/header-footer.js"></script>
+  <script src="../scripts/login.js"></script>
+  <!-- end script -->
+</body>
+
+</html>
