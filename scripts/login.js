@@ -45,52 +45,49 @@ passwordElement.addEventListener("blur", function () {
     passError.innerText = "";
   }
 }); // end of password blur
-var user = {
-  Email: `${emailElement.value}`,
-  Pass: passwordElement.value,
-};
+
 let firstFormElement = this.document.forms[0];
 firstFormElement.addEventListener("submit", function (event) {
   if (!(isEmailValid() && isPasswordValid())) {
     event.preventDefault();
     passError.innerText = "Email or password is not correct";
   }
-  if (emailElement.value == "elsayedreda760@gmail.com" &&
-      passwordElement.value == "10203040"
-    ){
-     location.replace("../pages/dashboard.html") 
-    }
-    else if(!(emailElement.value == "elsayedreda760@gmail.com" &&
-    passwordElement.value == "10203040")){
-  for(let i=0;i<allUsers.length;i++){
-  if(allUsers[i].Email === emailElement.value && allUsers[i].passwordElement.value){
-    
-    localStorage.setItem("currentUser", allUsers[i].userName);
-    location.replace("../pages/gallery.html")
-  }
-}
-    }
-else
-{
-  alert("not valid")
-}
+  let user = {
+    Email: emailElement.value,
+    Pass: passwordElement.value,
+  };
   if (isuserRegistered()) {
-    if (isAdmin) {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (user.Email === "elsayedreda760@gmail.com" && user.Pass === "10203040") {
       userType = "Admin";
       localStorage.setItem("userType", userType);
-      location.href = "../pages/dashboard.html";
-      // firstFormElement.action = "dashboard.html";
+      location.assign("../pages/dashboard.html");
+      alert("Admin");
+    } else if (
+      !(user.Email === "elsayedreda760@gmail.com" && user.Pass === "10203040")
+    ) {
+      for (let i = 0; i < allUsers.length; i++) {
+        if (
+          user.Email === allUsers[i].Email &&
+          user.Pass === allUsers[i].Pass
+        ) {
+          userType = "Member";
+          localStorage.setItem("userType", userType);
+          location.assign("../pages/gallery.html");
+          alert("Member");
+        }
+      }
+      localStorage.setItem("loggedUser", allUsers[i].userName);
     } else {
-      userType = "Member";
-      localStorage.setItem("userType", userType);
-      location.href = "../pages/index.html";
+      alert("user is not valid");
     }
-    localStorage.setItem("userLogged", JSON.stringify(user));
   } else {
-    userType = "public";
+    // userType = "public";
+    userType = "Guest";
     localStorage.setItem("userType", userType);
     event.preventDefault();
     passError.innerText = "Email or password is not registered";
+    alert("not registered");
   }
 }); // end of submit
 
@@ -108,37 +105,18 @@ if (allUsers == null) {
   allUsers = [];
 }
 function isuserRegistered() {
-  // let isRegistered = false;
+  let user = {
+    Email: emailElement.value,
+    Pass: passwordElement.value,
+  };
   for (let index = 0; index < allUsers.length; index++) {
     if (
       user.Email === allUsers[index].Email &&
       user.Pass === allUsers[index].Pass
     ) {
-      // isRegistered = true;
-      // return isRegistered;
+      localStorage.setItem("currentUser", JSON.stringify(allUsers[index]));
       return true;
-    } else {
-      return false;
     }
   }
+  return false;
 }
-let admin = {
-  Name : "sayed",
-  Password : "123"
-}
-
-
-
-// function isAdmin() {
-//   let isAdmin = false;
-//    {
-//     // userType = "Admin";
-//     // localStorage.setItem("userType", userType);
-//     isAdmin = true;
-//     return isAdmin;
-//   } else {
-//     // userType = "Member";
-//     // localStorage.setItem("userType", userType);
-//     return isAdmin;
-//   }
-// }

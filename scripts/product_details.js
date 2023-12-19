@@ -1,10 +1,7 @@
 let selectedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
 let productDetailsContainer = this.document.getElementById("product-details");
 window.addEventListener("load", function () {
-  // retrieve item form local storage
-  console.log(selectedProduct);
   if (selectedProduct) {
-    // display full product description
     let fullDescriptionDiv = this.document.createElement("div");
     fullDescriptionDiv.classList.add("product");
     let nameElement = this.document.createElement("h3");
@@ -34,28 +31,20 @@ window.addEventListener("load", function () {
   }
 
   document.forms[0].addEventListener("submit", function (event) {
-    console.log(event.target);
     buyProduct();
-  }); // end of buy submit
+  });
 
   let myCart = document.getElementById("cartButton");
   myCart.addEventListener("click", function () {
-    window.location.href = "../pages/cart.html";
-  }); // end of my cart submit
-}); // end of load
+    location.href = "../pages/cart.html";
+  });
+});
 
 let cart = JSON.parse(localStorage.getItem("cartItems"));
-let userIsRegistered; // Replace with your actual logic
-let userIsLoggedIn;
+if (cart == null) {
+  cart = [];
+}
 function buyProduct() {
-  // if (!userIsRegistered) {
-  //   window.location.href = "register.html";
-  // } else if (!userIsLoggedIn) {
-  //   location.href = "login.html";
-  // } else {
-  //   //todo: purchase logic
-  //   cart.push(selectedProduct);
-  // }
   cart.push(selectedProduct);
   localStorage.setItem("cartItems", JSON.stringify(cart));
   alert("This item had been added to your cart");

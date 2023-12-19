@@ -1,8 +1,7 @@
 let allProducts;
 let listTable = document.getElementById("listTable");
 let addForm = document.getElementById("add-product-form");
-let fileInput = document.getElementById('imageInput');
-// let id = 1;
+let fileInput = document.getElementById("imageInput");
 window.addEventListener("load", function () {
   // initial display
   displayProducts();
@@ -20,7 +19,7 @@ window.addEventListener("load", function () {
       }
     }
   });
- 
+
   addForm.addEventListener("submit", function (event) {
     addProduct();
   });
@@ -71,10 +70,7 @@ let productImage = document.getElementById("imageInput");
 let productDescription = document.getElementById("productDescription");
 
 function addProduct() {
-  //  if ((userType === "Admin" )){
-  // }
   let newProduct = {
-    id: productID.value > 0 ? productID.value : 1 ,
     id: productID.value,
     name: productName.value,
     price: `${productPrice.value}`,
@@ -90,17 +86,16 @@ function addProduct() {
 
 function loadPhoto(event) {
   const fileInput = event.target;
-  const preview = document.getElementById('imageInput');
+  const preview = document.getElementById("imageInput");
 
   const reader = new FileReader();
   if (fileInput.files && fileInput.files[0]) {
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+    };
 
-      reader.onload = function (e) {
-          preview.src = e.target.result;
-      };
-
-      // Read the selected file as a data URL
-      reader.readAsDataURL(fileInput.files[0]);
+    // Read the selected file as a data URL
+    reader.readAsDataURL(fileInput.files[0]);
   }
 }
 

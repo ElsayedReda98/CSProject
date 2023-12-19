@@ -1,5 +1,5 @@
 // validate user name
-let userNameElement = this.document.getElementById("username");
+let userNameElement = document.getElementById("userName");
 let userNameError = document.getElementById("userNameError");
 userNameElement.addEventListener("blur", function () {
   if (!isuserNameValid()) {
@@ -24,8 +24,8 @@ userNameElement.addEventListener("blur", function () {
 }); // end of username blur
 
 // validate email
-let emailElement = this.document.getElementById("email");
-let emailError = this.document.getElementById("emailError");
+let emailElement = document.getElementById("email");
+let emailError = document.getElementById("emailError");
 emailElement.addEventListener("blur", function () {
   if (isEmailRegistered()) {
     emailElement.classList.add("incorrect");
@@ -84,7 +84,7 @@ passwordElement.addEventListener("blur", function () {
     passError.innerText = "";
   }
 });
-let firstFormElement = this.document.forms[0];
+let firstFormElement = document.forms[0];
 firstFormElement.addEventListener("submit", function (event) {
   if (
     !(
@@ -98,6 +98,8 @@ firstFormElement.addEventListener("submit", function (event) {
     alert("Your data is not valid");
   } else {
     registerEmail();
+    console.log("done");
+    location.assign("../pages/index.html");
   }
 }); // end of submit
 
@@ -110,6 +112,22 @@ firstFormElement.addEventListener("reset", function (event) {
     mobileElement.classList.remove("correct");
   }
 }); // end of reset
+
+let userCart = [];
+
+function registerEmail() {
+  let newUser = {
+    UserName: `${userNameElement.value}`,
+    Email: emailElement.value,
+    Mobile: mobileElement.value,
+    Pass: passwordElement.value,
+  };
+  allUsers.push(newUser);
+  localStorage.setItem("allUsers", JSON.stringify(allUsers));
+  userCart.push(newUser);
+  localStorage.setItem(`${newUser.UserName}Cart`, json.stringify(userCart));
+  localStorage.setItem("userRegistered", JSON.stringify(newUser));
+}
 
 function isuserNameValid() {
   var userNamePattern = /^[a-zA-Z][a-zA-Z0-9_]{2,11}$/;
@@ -141,10 +159,11 @@ function isPasswordValid() {
   return passwordElement.value.match(passPattern);
 }
 let allUsers = JSON.parse(localStorage.getItem("allUsers"));
-if (allUsers == null) {
+if (allUsers === null) {
   allUsers = [];
 }
 
+//check email is registered before
 function isEmailRegistered() {
   isRegistered = false;
   for (let index = 0; index < allUsers.length; index++) {
@@ -154,23 +173,4 @@ function isEmailRegistered() {
     }
   }
   return isRegistered;
-}
-let userName = userNameElement;
-let userEmail = emailElement;
-let mobile = mobileElement;
-let userPass = passwordElement;
-
-let cartUser =[];
-function registerEmail() {
-  let user = {
-    UserName: userName.value,
-    Email: userEmail.value,
-    Mobile: mobile.value,
-    Pass: userPass.value,
-  };
-  allUsers.push(user);
-cartUser.push(user);
-  localStorage.setItem(`cart${user.userName}`, JSON.stringify(cartUser));
-  localStorage.setItem("allUsers", JSON.stringify(allUsers));
-  localStorage.setItem("userRegistered", JSON.stringify(user));
 }

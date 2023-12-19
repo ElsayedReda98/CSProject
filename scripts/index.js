@@ -102,7 +102,6 @@ localStorage.setItem("allProducts", JSON.stringify(products));
 allProducts = JSON.parse(localStorage.getItem("allProducts"));
 allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
-// userRegistered = JSON.parse(localStorage.getItem("userRegistered"));
 userLogged = JSON.parse(localStorage.getItem("userLogged"));
 
 headerContainer = document.getElementById("header-container");

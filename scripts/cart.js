@@ -1,8 +1,7 @@
 let itemsTable = document.getElementById("items-table");
 let confirmButton = document.getElementById("confirm");
-
+let allProducts = JSON.parse(localStorage.getItem("allProducts"));
 window.addEventListener("load", function () {
-  // initial display
   displayOrderItems();
   renderCart();
   itemsTable.addEventListener("click", function (event) {
@@ -18,7 +17,7 @@ window.addEventListener("load", function () {
         event.preventDefault();
       }
     }
-  }); // end of buy button
+  });
 
   confirmButton.addEventListener("click", function () {
     if (cartItems.length > 0) {
@@ -26,16 +25,16 @@ window.addEventListener("load", function () {
         "Are you sure you want to confirm purchase processing?"
       );
       if (confirmation) {
+        confirmPurchase();
         alert("Purchase processing done successfully");
       }
     } else {
       alert("Your cart is empty!!");
     }
-  }); //end of confirm button
-}); // end of load
+  });
+});
 
-let currentUser = JSON.parse(localStorage.getItem(`currentUser`));
-let cartItems = JSON.parse(localStorage.getItem(`cart${currentUser}`));
+let cartItems = JSON.parse(localStorage.getItem(`cartItems`));
 if (cartItems == null) {
   cartItems = [];
 }
@@ -77,14 +76,13 @@ function displayOrderItems() {
   });
 }
 function deleteItem(itemId) {
-  let updatedItems = [];
+  let restItems = [];
   if (cartItems) {
-    updatedItems = cartItems.filter((item) => item.id !== itemId);
-    console.log("Item deleted successfully.");
+    restItems = cartItems.filter((item) => item.id !== itemId);
   } else {
     console.log("No items in local storage.");
   }
-  localStorage.setItem("", JSON.stringify(updatedItems));
+  localStorage.setItem("cartItems", JSON.stringify(restItems));
   location.reload();
 }
 
@@ -98,4 +96,13 @@ function renderCart() {
   });
 }
 
-function confirmPurchase() {}
+function confirmPurchase() {
+  clearCart();
+  renderCart();
+  location.reload();
+}
+
+function clearCart() {
+  cartItems = [];
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
