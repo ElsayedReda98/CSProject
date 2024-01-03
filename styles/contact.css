@@ -3,6 +3,15 @@
   margin: 0;
   box-sizing: border-box;
 }
+.incorrect {
+  border: 2px dashed red !important;
+}
+.correct {
+  border: 2px solid green !important;
+}
+.error {
+  color: red;
+}
 #page-container {
   height: 600px;
 }
@@ -42,4 +51,16 @@ p {
 }
 #left-column ul li {
   display: block;
+}
+#submit,
+#reset {
+  border-radius: 20px;
+}
+#submit {
+  background-color: blue;
+  color: white;
+}
+#reset {
+  background-color: red;
+  color: white;
 }

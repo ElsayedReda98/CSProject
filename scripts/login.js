@@ -1,4 +1,5 @@
 let userType = localStorage.getItem("userType");
+
 if (userType == null) {
   userType = "";
 }
@@ -20,7 +21,7 @@ emailElement.addEventListener("blur", function () {
     emailElement.classList.add("correct");
     emailError.innerText = "";
   }
-}); // end of email blur
+});
 
 let passwordElement = document.getElementById("password");
 let passError = this.document.getElementById("passError");
@@ -44,23 +45,32 @@ passwordElement.addEventListener("blur", function () {
     passwordElement.classList.add("correct");
     passError.innerText = "";
   }
-}); // end of password blur
+});
 
+let userCart = [];
 let firstFormElement = this.document.forms[0];
 firstFormElement.addEventListener("submit", function (event) {
   if (!(isEmailValid() && isPasswordValid())) {
     event.preventDefault();
     passError.innerText = "Email or password is not correct";
   }
+  signed = false;
   let user = {
     Email: emailElement.value,
     Pass: passwordElement.value,
   };
+  let loggedUsers = JSON.parse(localStorage.getItem("loggedUsers"));
+  if (loggedUsers == null) {
+    loggedUsers = [];
+  }
   if (isuserRegistered()) {
-    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (user.Email === "elsayedreda760@gmail.com" && user.Pass === "10203040") {
       userType = "Admin";
       localStorage.setItem("userType", userType);
+      loggedUsers.push(user);
+      localStorage.setItem("loggedUsers", JSON.stringify(loggedUsers));
+      signin = true;
+      localStorage.setItem("signed", signed);
       location.assign("../pages/dashboard.html");
       alert("Admin");
     } else if (
@@ -73,23 +83,30 @@ firstFormElement.addEventListener("submit", function (event) {
         ) {
           userType = "Member";
           localStorage.setItem("userType", userType);
-          location.assign("../pages/gallery.html");
-          alert("Member");
+          loggedUsers.push(user);
+          signed = true;
+          localStorage.setItem("signed", signed);
+          localStorage.setItem(
+            `${user.Email.split("@")[0]}Cart`,
+            JSON.stringify(userCart)
+          );
+          location.assign("../pages/index.html");
+          alert("Member User");
         }
       }
-      localStorage.setItem("loggedUser", allUsers[i].userName);
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      localStorage.setItem("loggedUsers", JSON.stringify(loggedUsers));
     } else {
       alert("user is not valid");
     }
   } else {
-    // userType = "public";
     userType = "Guest";
     localStorage.setItem("userType", userType);
     event.preventDefault();
-    passError.innerText = "Email or password is not registered";
     alert("not registered");
+    location.assign("../pages/register.html");
   }
-}); // end of submit
+});
 
 function isEmailValid() {
   var emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -119,4 +136,15 @@ function isuserRegistered() {
     }
   }
   return false;
+}
+
+function isEmailLogged() {
+  let isLogged = false;
+  for (let index = 0; index < loggedUsers.length; index++) {
+    if (emailElement.value == loggedUsers[index].Email) {
+      isLogged = true;
+      return isLogged;
+    }
+  }
+  return isLogged;
 }

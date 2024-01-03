@@ -1,64 +1,66 @@
 <html>
+  <head>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href=".././styles/header-footer.css" />
+    <link rel="stylesheet" href=".././styles/contact.css" />
+  </head>
 
-<head>
-  <title>Contact Us</title>
-  <link rel="stylesheet" href=".././styles/header-footer.css" />
-  <link rel="stylesheet" href=".././styles/contact.css" />
-</head>
-
-<body>
-  <div id="header-container"></div>
-  <div id="page-container">
-    <div id="contact">
-      <div class="container">
-        <div id="left-column">
-          <h2>Get in touch with us</h2>
-          <p>
-            We will be happy to respond to any request for information as soon
-            as possible.
-          </p>
-          <ul>
-            <li>
-              <p>Address:</p>
-              <span>5/1 ,Main Street, Cairo, Egypt</span>
-            </li>
-            <li>
-              <p>Phone:</p>
-              <a href="tel:+201019929479">+201019929479</a>
-            </li>
-            <li>
-              <p>Email:</p>
-              <a href="mailto:elsayedreda760@gmail.com">
-                elsayedreda760@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="right-column">
-          <form class="form">
-            <div class="form-group">
-              Name:
-              <input type="text" id="name" />
-            </div>
-            <div class="form-group">
-              E-Mail:
-              <input type="email" id="email" />
-            </div>
-            <div class="form-group">
-              subject:
-              <textarea id="subject" rows="5" cols="30"> </textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" value="Register" />
-              <input type="reset" value="Cancel" />
-            </div>
-          </form>
+  <body>
+    <div id="header-container"></div>
+    <div id="page-container">
+      <div id="contact">
+        <div class="container">
+          <div id="left-column">
+            <h2>Get in touch with us</h2>
+            <p>
+              We will be happy to respond to any request for information as soon
+              as possible.
+            </p>
+            <ul>
+              <li>
+                <p>Address:</p>
+                <span>5/1 ,Main Street, Cairo, Egypt</span>
+              </li>
+              <li>
+                <p>Phone:</p>
+                <a href="tel:+201019929479">+201019929479</a>
+              </li>
+              <li>
+                <p>Email:</p>
+                <a href="mailto:elsayedreda760@gmail.com">
+                  elsayedreda760@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div id="right-column">
+            <form class="form">
+              <div class="form-group">
+                Name:
+                <input type="text" id="name" />
+                <p id="nameError"></p>
+              </div>
+              <div class="form-group">
+                E-Mail:
+                <input type="email" id="email" />
+                <p id="emailError"></p>
+              </div>
+              <div class="form-group">
+                subject:
+                <textarea id="subject" rows="5" cols="30"> </textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send" id="submit" />
+                <input type="reset" value="Cancel" id="reset" />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="footer-container"></div>
-  <script src="../scripts/header-footer.js"></script>
-</body>
-
+    <div id="footer-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="../scripts/header-footer.js"></script>
+    <script src="../scripts/contact.js"></script>
+  </body>
 </html>

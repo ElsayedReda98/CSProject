@@ -66,14 +66,18 @@ input {
   padding: 10px;
   margin: 10px auto;
   width: 300px;
-  height: 30px;
   border-radius: 20px;
 }
-input[type="button"] {
+#cartButton {
   color: #ddd;
   background-color: darkblue;
 }
 input[type="submit"] {
   background-color: aqua;
-width: 100%;
+  width: 100%;
+}
+#signout {
+  border-radius: 10px;
+  display: inline-block;
+  width: 90px;
 }

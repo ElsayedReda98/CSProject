@@ -20,7 +20,7 @@ window.addEventListener("load", function () {
   });
 
   confirmButton.addEventListener("click", function () {
-    if (cartItems.length > 0) {
+    if (userCartItems.length > 0) {
       let confirmation = confirm(
         "Are you sure you want to confirm purchase processing?"
       );
@@ -33,14 +33,20 @@ window.addEventListener("load", function () {
     }
   });
 });
-
-let cartItems = JSON.parse(localStorage.getItem(`cartItems`));
-if (cartItems == null) {
-  cartItems = [];
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+let userCartItems;
+if (currentUser != null) {
+  userCartItems = JSON.parse(
+    localStorage.getItem(`${currentUser.Email.split("@")[0]}Cart`)
+  );
 }
+if (userCartItems == null) {
+  userCartItems = [];
+}
+
 function displayOrderItems() {
   let items = document.getElementById("items-body");
-  cartItems.forEach((item) => {
+  userCartItems.forEach((item) => {
     let row = document.createElement("tr");
     let idCell = document.createElement("td");
     let nameCell = document.createElement("td");
@@ -77,12 +83,15 @@ function displayOrderItems() {
 }
 function deleteItem(itemId) {
   let restItems = [];
-  if (cartItems) {
-    restItems = cartItems.filter((item) => item.id !== itemId);
+  if (userCartItems) {
+    restItems = userCartItems.filter((item) => item.id !== itemId);
   } else {
     console.log("No items in local storage.");
   }
-  localStorage.setItem("cartItems", JSON.stringify(restItems));
+  localStorage.setItem(
+    `${currentUser.Email.split("@")[0]}Cart`,
+    JSON.stringify(restItems)
+  );
   location.reload();
 }
 
@@ -90,19 +99,48 @@ function renderCart() {
   orderDetails = document.getElementById("order-details");
   let totalPrice = document.getElementById("total");
   let total = 0;
-  cartItems.forEach((item) => {
+  userCartItems.forEach((item) => {
     total += item.price;
     totalPrice.innerText = total;
   });
 }
 
-function confirmPurchase() {
+async function confirmPurchase() {
+  await sendMail();
   clearCart();
   renderCart();
   location.reload();
 }
 
 function clearCart() {
-  cartItems = [];
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  userCartItems = [];
+  localStorage.setItem(
+    `${currentUser.Email.split("@")[0]}Cart`,
+    JSON.stringify(userCartItems)
+  );
+}
+let buyerData = JSON.parse(localStorage.getItem("buyer"));
+
+async function sendMail() {
+  (function () {
+    emailjs.init("Vl-je1ElM7thfrQNL");
+  })();
+
+  var params = {
+    Name: buyerData.Name,
+    Email: buyerData.Email,
+  };
+
+  var serviceID = "service_r952t94";
+  var templateID = "cart_65t2egs";
+  await emailjs
+    .send(serviceID, templateID, params)
+    .then((res) => {
+      alert("Email sent successfully");
+      console.log("Email sent successfully");
+    })
+    .catch((error) => {
+      alert("there is an error");
+      console.log("error");
+    });
 }

@@ -1,34 +1,44 @@
-// header_footer.js
+// window.addEventListener("DomContentLoaded", function () {
+userType = localStorage.getItem("userType");
+let signOutButton;
+let signed = false;
+signed = localStorage.getItem("signed");
 window.addEventListener("load", function () {
-  // Load the header and footer content dynamically
   loadHeader("header-container");
   loadFooter("footer-container");
 });
 
-function loadHeader(containerId) {
+async function loadHeader(containerId) {
   var container = document.getElementById(containerId);
-
-  // Fetch header content
-  fetch("header.html")
-    .then((response) => response.text())
-    .then((headerContent) => {
-      container.innerHTML = headerContent;
-    })
-    .catch((error) => {
-      console.error("Error fetching header:", error);
-    });
+  try {
+    let response = await fetch("header.html");
+    let headerHtml = await response.text();
+    container.innerHTML = headerHtml;
+  } catch (error) {
+    console.error("Error fetching header:", error);
+  }
+  let dashboradLink = document.getElementById("dashboard-link");
+  if (userType !== "Admin") {
+    dashboradLink.style.display = "none";
+  }
+  signOutButton = document.getElementById("signOut");
+  if (signed !== "true") {
+    signOutButton.style.display = "none";
+  }
 }
-
-function loadFooter(containerId) {
+async function loadFooter(containerId) {
   var container = document.getElementById(containerId);
-
-  // Fetch footer content
-  fetch("footer.html")
-    .then((response) => response.text())
-    .then((footerContent) => {
-      container.innerHTML = footerContent;
-    })
-    .catch((error) => {
-      console.error("Error fetching footer:", error);
-    });
+  try {
+    let response = await fetch("footer.html");
+    let footerHtml = await response.text();
+    container.innerHTML = footerHtml;
+  } catch (error) {
+    console.error("Error fetching footer:", error);
+  }
+}
+function signOut() {
+  localStorage.setItem("signed", false);
+  localStorage.setItem("userType", "Guest");
+  localStorage.setItem("currentUser", null);
+  location.replace("../pages/index.html");
 }

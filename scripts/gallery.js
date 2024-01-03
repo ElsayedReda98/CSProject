@@ -1,4 +1,3 @@
-
 window.addEventListener("load", function () {
   allProducts = JSON.parse(localStorage.getItem("allProducts"));
   let galleryDiv = document.getElementById("gallery");
@@ -19,16 +18,13 @@ window.addEventListener("load", function () {
     readMoreLink.addEventListener("click", function () {
       showFullDescription(product);
       console.log(product);
-    }); //end of click
+    });
 
     productDiv.appendChild(readMoreLink);
 
     galleryDiv.appendChild(productDiv);
-
-    
   });
-
-}); //end of load
+});
 
 function showFullDescription(product) {
   localStorage.setItem("selectedProduct", JSON.stringify(product));

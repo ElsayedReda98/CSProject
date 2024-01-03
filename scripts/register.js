@@ -1,4 +1,3 @@
-// validate user name
 let userNameElement = document.getElementById("userName");
 let userNameError = document.getElementById("userNameError");
 userNameElement.addEventListener("blur", function () {
@@ -21,9 +20,7 @@ userNameElement.addEventListener("blur", function () {
     userNameError.innerText = "";
     emailElement.focus();
   }
-}); // end of username blur
-
-// validate email
+});
 let emailElement = document.getElementById("email");
 let emailError = document.getElementById("emailError");
 emailElement.addEventListener("blur", function () {
@@ -44,7 +41,7 @@ emailElement.addEventListener("blur", function () {
     emailElement.classList.add("correct");
     emailError.innerText = "";
   }
-}); // end of email blur
+});
 
 let mobileElement = document.getElementById("phone");
 let mobileError = document.getElementById("mobileError");
@@ -60,7 +57,7 @@ mobileElement.addEventListener("blur", function () {
     mobileElement.classList.add("correct");
     mobileError.innerText = "";
   }
-}); // end of mobile blur
+});
 
 let passwordElement = document.getElementById("password");
 passwordElement.addEventListener("blur", function () {
@@ -101,7 +98,7 @@ firstFormElement.addEventListener("submit", function (event) {
     console.log("done");
     location.assign("../pages/index.html");
   }
-}); // end of submit
+});
 
 firstFormElement.addEventListener("reset", function (event) {
   if (!confirm("Are you sure you want to clear it ?")) {
@@ -111,22 +108,20 @@ firstFormElement.addEventListener("reset", function (event) {
     emailElement.classList.remove("correct");
     mobileElement.classList.remove("correct");
   }
-}); // end of reset
-
-let userCart = [];
-
+});
+let allUsers = JSON.parse(localStorage.getItem("allUsers"));
+if (allUsers === null) {
+  allUsers = [];
+}
 function registerEmail() {
   let newUser = {
-    UserName: `${userNameElement.value}`,
+    UserName: userNameElement.value,
     Email: emailElement.value,
     Mobile: mobileElement.value,
     Pass: passwordElement.value,
   };
   allUsers.push(newUser);
   localStorage.setItem("allUsers", JSON.stringify(allUsers));
-  userCart.push(newUser);
-  localStorage.setItem(`${newUser.UserName}Cart`, json.stringify(userCart));
-  localStorage.setItem("userRegistered", JSON.stringify(newUser));
 }
 
 function isuserNameValid() {
@@ -158,14 +153,9 @@ function isPasswordValid() {
   var passPattern = /^[0-9]{8,20}$/;
   return passwordElement.value.match(passPattern);
 }
-let allUsers = JSON.parse(localStorage.getItem("allUsers"));
-if (allUsers === null) {
-  allUsers = [];
-}
 
-//check email is registered before
 function isEmailRegistered() {
-  isRegistered = false;
+  let isRegistered = false;
   for (let index = 0; index < allUsers.length; index++) {
     if (emailElement.value == allUsers[index].Email) {
       isRegistered = true;

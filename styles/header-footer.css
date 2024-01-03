@@ -8,13 +8,15 @@
   color: white;
   padding: 10px;
   width: 100%;
-  text-align: center;
 }
-.menu,
-ul {
+.menu {
   list-style: none;
+  display: inline-block;
   padding: 5px;
-  margin: 5px;
+}
+#register {
+  display: inline-block;
+  margin-left: 800;
 }
 li {
   display: inline-block;
@@ -23,6 +25,11 @@ li {
 }
 a {
   text-decoration: none;
+}
+#signout {
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
 }
 #footer {
   background-color: rgba(67, 62, 90, 0.452);
