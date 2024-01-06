@@ -96,16 +96,11 @@ let products = [
       "Lenovo Ideapad l340 15.6, 60Hz IPS FHD, Intel Core i5-9300FH, Nvidia GTX 1650 4GB GPU,",
   },
 ];
-localStorage.setItem("allProducts", JSON.stringify(products));
-
-// signed = false;
-// localStorage.setItem("signed", signed);
-// signOutButton = document.getElementById("signOut");
-// if (signed == "false") {
-//   signOutButton.style.display = "none";
-// }
-
 allProducts = JSON.parse(localStorage.getItem("allProducts"));
+if (!allProducts) {
+  localStorage.setItem("allProducts", JSON.stringify(products));
+}
+
 allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
 userLogged = JSON.parse(localStorage.getItem("userLogged"));
@@ -116,9 +111,6 @@ let ourProductDiv = document.getElementById("ourProduct");
 
 window.addEventListener("load", function () {
   displayRandomProducts();
-  if (userLogged) {
-    //userInfo.innerText = `Welcome ${userLogged.Email}`;
-  }
 });
 
 function getRandomProducts(products) {

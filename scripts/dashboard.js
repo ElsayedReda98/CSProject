@@ -1,33 +1,44 @@
-let allProducts;
-let listTable = document.getElementById("listTable");
-let addForm = document.getElementById("add-product-form");
-let fileInput = document.getElementById("imageInput");
+let allProducts = JSON.parse(localStorage.getItem("allProducts"));
+let pageWrapper = document.getElementById("page-wrapper");
+let productList = document.getElementById("productList");
 window.addEventListener("load", function () {
-  displayProducts();
-  listTable.addEventListener("click", function (event) {
-    if (event.target.nodeName === "INPUT") {
-      console.log(event.target);
-      product_to_delete = event.target.parentNode.parentNode;
-      productID = product_to_delete.children[0].innerText;
-      let deleteConfirm = confirm("Are you sure you want to delete this item?");
-      if (deleteConfirm == true) {
-        deleteProduct(Number(productID));
-        product_to_delete.remove();
-        alert("Item was deleted successfully");
-      } else {
-        event.preventDefault();
-      }
-    }
-  });
+  if (productList.children.length == 0) {
+    pageWrapper.classList.add("pageWrapper");
+  } else {
+    pageWrapper.classList.remove("pageWrapper");
+  }
+});
 
-  addForm.addEventListener("submit", function (event) {
-    addProduct();
-  });
+let listTable = document.getElementById("listTable");
+let createButton = document.getElementById("create");
+createButton.addEventListener("click", function () {
+  location.href = "Add.html";
+});
+displayProducts();
+listTable.addEventListener("click", function (e) {
+  if (e.target.nodeName === "INPUT" && e.target.id === "delete") {
+    product_to_delete = e.target.parentNode.parentNode;
+    productID = product_to_delete.children[0].innerText;
+    let deleteConfirm = confirm("Are you sure you want to delete this item?");
+    if (deleteConfirm == true) {
+      deleteProduct(Number(productID));
+      product_to_delete.remove();
+      alert("Item was deleted successfully");
+    } else {
+      e.preventDefault();
+    }
+  } else if (e.target.nodeName === "INPUT" && e.target.id === "update") {
+    product_to_edit = e.target.parentNode.parentNode;
+    productID = product_to_edit.children[0].innerText;
+    let product = GetProductByID(productID);
+    Update(product);
+  } else if (e.target.nodeName === "INPUT" && e.target.id === "details") {
+    console.log("details");
+  }
 });
 
 function displayProducts() {
   allProducts = JSON.parse(localStorage.getItem("allProducts"));
-  let productList = document.getElementById("productList");
   allProducts.forEach((product) => {
     let row = document.createElement("tr");
     let idCell = document.createElement("td");
@@ -76,26 +87,6 @@ function displayProducts() {
     productList.appendChild(row);
   });
 }
-let productID = document.getElementById("productID");
-let productName = document.getElementById("productName");
-let productPrice = document.getElementById("productPrice");
-let productImage = document.getElementById("imageInput");
-let productDescription = document.getElementById("productDescription");
-
-function addProduct() {
-  let newProduct = {
-    id: productID.value,
-    name: productName.value,
-    price: `${productPrice.value}`,
-    imageUrl: `../images/${productImage.value.slice(12)}`,
-    description: productDescription.value,
-  };
-  newProduct.imageUrl.slice(12);
-  allProducts.push(newProduct);
-  localStorage.setItem("allProducts", JSON.stringify(allProducts));
-  displayProducts();
-  clearForm();
-}
 
 function deleteProduct(productId) {
   let updatedProducts = [];
@@ -107,10 +98,14 @@ function deleteProduct(productId) {
   }
   localStorage.setItem("allProducts", JSON.stringify(updatedProducts));
 }
-function clearForm() {
-  document.getElementById("productID").value = "";
-  document.getElementById("productName").value = "";
-  document.getElementById("productPrice").value = "";
-  document.getElementById("productImageUrl").value = "";
-  document.getElementById("productDescription").value = "";
+
+function GetProductByID(id) {
+  let product = allProducts.find((product) => product.id == id);
+  return product;
 }
+function Update(product) {
+  localStorage.setItem("productToEdit", JSON.stringify(product));
+  location.href = "Update.html";
+}
+
+function search() {}

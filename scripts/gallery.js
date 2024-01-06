@@ -30,3 +30,5 @@ function showFullDescription(product) {
   localStorage.setItem("selectedProduct", JSON.stringify(product));
   window.location.href = "product-details.html";
 }
+
+function search() {}

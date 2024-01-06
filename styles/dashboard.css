@@ -3,27 +3,29 @@
   margin: 0;
   box-sizing: border-box;
 }
-#add-product-form {
-  max-width: 600px;
-  padding: 10px;
-  margin: 20px auto;
-  background-color: #fff;
+.pageWrapper {
+  height: 800px;
 }
-#add-product-form input {
-  margin: 10px;
-  width: 400px;
-  height: 25px;
+.wrapper {
+  padding: 20px;
+}
+#name {
+  padding: 10px;
+  width: 300px;
+}
+#search {
+  padding: 10px;
+  margin-left: 85%;
+}
+#create {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  margin: 20px;
 }
 h2 {
   text-align: center;
   margin: 20px;
-}
-#add {
-  padding: 5px;
-  margin: 10px;
-  background-color: blue;
-  color: white;
-  border-radius: 10px;
 }
 table {
   border-collapse: collapse;
@@ -63,9 +65,4 @@ tr:hover {
 }
 #delete {
   background-color: red;
-}
-#signout {
-  display: inline-block;
-  border-radius: 10px;
-  width: 90px;
 }

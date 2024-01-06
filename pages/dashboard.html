@@ -7,60 +7,31 @@
 
   <body>
     <div id="header-container"></div>
-    <div id="product-form">
-      <h2>Add product</h2>
-      <form id="add-product-form">
-        <table>
-          <tr>
-            <td>Product ID:</td>
-            <td>
-              <input type="number" id="productID" min="1" />
-            </td>
-          </tr>
-          <tr>
-            <td>Product Name:</td>
-            <td>
-              <input type="text" id="productName" />
-            </td>
-          </tr>
-          <tr>
-            <td>Price</td>
-            <td><input type="number" id="productPrice" min="10" /></td>
-          </tr>
-          <tr>
-            <td>Image</td>
-            <td>
-              <input type="file" id="imageInput" accept="image/*" />
-            </td>
-          </tr>
-          <tr>
-            <td>Description</td>
-            <td><input type="text" id="productDescription" /></td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <input type="submit" id="add" value="Add Product" />
-            </td>
-          </tr>
+    <div id="page-wrapper">
+      <div class="wrapper">
+        Name:
+        <input type="text" id="name" />
+      </div>
+      <div class="wrapper">
+        <input type="button" value="Search" id="search" />
+        <input type="button" value="Create" id="create" />
+      </div>
+      <div id="list">
+        <h2>Product List</h2>
+        <table id="listTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Image</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="productList"></tbody>
         </table>
-      </form>
-    </div>
-
-    <div id="list">
-      <h2>Product List</h2>
-      <table id="listTable">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="productList"></tbody>
-      </table>
+      </div>
     </div>
     <div id="footer-container"></div>
     <script src="../scripts/header-footer.js"></script>

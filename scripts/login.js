@@ -69,7 +69,7 @@ firstFormElement.addEventListener("submit", function (event) {
       localStorage.setItem("userType", userType);
       loggedUsers.push(user);
       localStorage.setItem("loggedUsers", JSON.stringify(loggedUsers));
-      signin = true;
+      signed = true;
       localStorage.setItem("signed", signed);
       location.assign("../pages/dashboard.html");
       alert("Admin");

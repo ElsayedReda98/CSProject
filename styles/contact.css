@@ -12,9 +12,6 @@
 .error {
   color: red;
 }
-#page-container {
-  height: 600px;
-}
 .container {
   font-size: 0;
   border: 2px solid black;

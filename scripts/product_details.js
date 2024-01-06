@@ -156,7 +156,9 @@ function isNameValid() {
 }
 
 function isNameLengthValid() {
-  return !(nameElement.value.trim() < 3 || nameElement.value.trim().length > 15);
+  return !(
+    nameElement.value.trim() < 3 || nameElement.value.trim().length > 15
+  );
 }
 
 function isEmailValid() {

@@ -3,14 +3,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-#page-container {
-  height: 600px;
-}
 h2 {
   text-align: center;
   padding: 10px;
   margin: 10px auto;
-  background-color: antiquewhite;
+  background-color: rgb(8, 79, 83);
   width: 200px;
   border-radius: 20px;
 }

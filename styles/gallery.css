@@ -3,8 +3,20 @@
   margin: 0;
   box-sizing: border-box;
 }
-#page-container{
-  /* height: 800px; */
+.wrapper {
+  padding: 20px;
+}
+#name {
+  padding: 10px;
+  width: 300px;
+}
+#search {
+  padding: 10px;
+  margin-left: 85%;
+}
+h2 {
+  text-align: center;
+  margin: 20px;
 }
 .product {
   display: inline-block;

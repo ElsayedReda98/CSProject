@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#product-form {
+  border: 2px solid blue;
+  padding: 10px;
+  margin: 20px;
+}
+input {
+  padding: 10px;
+  margin: 10px;
+  width: 99%;
+  height: 40px;
+}
+h2 {
+  text-align: center;
+  margin: 20px;
+}
+input[type="button"] {
+  display: inline-block;
+  padding: 10px;
+  width: 100px;
+  border-radius: 20px;
+}
+#save {
+  background-color: blue;
+  color: white;
+  width: 100px;
+}
+#cancel {
+  margin-left: 80%;
+}
+table {
+  border: 2px solid red;
+  border-collapse: collapse;
+  width: 99%;
+  margin: 10px;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+th {
+  background-color: #333;
+  color: #fff;
+}
+tr:hover {
+  background-color: #f5f5f5;
+}

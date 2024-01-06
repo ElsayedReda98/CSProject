@@ -3,7 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
-h2{
+h2 {
   text-align: center;
   padding: 10px;
   margin: 10px auto;
@@ -13,9 +13,6 @@ h2{
 }
 #user-info {
   color: blue;
-}
-#page-container {
-  height: 600px;
 }
 .product {
   display: inline-block;

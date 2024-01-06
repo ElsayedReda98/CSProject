@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../styles/Crud.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h2>Update Product</h2>
+      <form id="product-form">
+        <table>
+          <tr>
+            <td>Product ID:</td>
+            <td>
+              <input type="number" id="productID" min="1" />
+            </td>
+          </tr>
+          <tr>
+            <td>Product Name:</td>
+            <td>
+              <input type="text" id="productName" />
+            </td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td><input type="number" id="productPrice" min="10" /></td>
+          </tr>
+          <tr>
+            <td>Image</td>
+            <td>
+              <input type="file" id="productImage" accept="image/*" />
+            </td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td><input type="text" id="productDescription" /></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="button" id="cancel" value="Cancel" />
+              <input type="button" id="save" value="Save" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <script src="../scripts/Update.js"></script>
+  </body>
+</html>
