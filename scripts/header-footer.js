@@ -3,6 +3,7 @@ userType = localStorage.getItem("userType");
 let signOutButton;
 let signed = false;
 signed = localStorage.getItem("signed");
+let logo;
 window.addEventListener("load", function () {
   loadHeader("header-container");
   loadFooter("footer-container");
@@ -24,6 +25,10 @@ async function loadHeader(containerId) {
   signOutButton = document.getElementById("signOut");
   if (signed !== "true") {
     signOutButton.style.display = "none";
+  }
+  logo = document.getElementById("logo");
+  if (userType !== "Admin") {
+    logo.style.marginLeft = "400px";
   }
 }
 async function loadFooter(containerId) {
